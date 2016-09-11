@@ -42,7 +42,8 @@ html {
     display: block;
     width:1400px;
     height: 900px;
-   // overflow: auto;
+    border-bottom: 3px #6a7ce2 solid;
+    border-right: 3px #6a7ce2 solid;
 }
 
 #field:after {
