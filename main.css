@@ -42,7 +42,6 @@ html {
     display: block;
     width:1400px;
     height: 900px;
-   // overflow: auto;
 }
 
 #field:after {
