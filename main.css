@@ -1,0 +1,46 @@
+body,
+html {
+    height: 100%;
+    margin: 0;
+}
+
+#menu {
+    background: #afcbf0;
+    display: block;
+    width: 20%;
+    height: 100%;
+    float: left;
+}
+
+#menuButton {
+    display: block;
+    width: 85%;
+    //height: 5%;
+    margin: 0 auto;
+    margin-top: 20px;
+    font-size: 1vw;
+    text-align: center;
+}
+
+.imageInput {
+    width: 85%;
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+#field {
+    background: #d2e5f4;
+    display: block;
+    width: 80%;
+    height: 100%;
+    float: left;
+    overflow: scroll;
+}
+
+#field:after {
+    content: "";
+    display: block;
+    clear: both;
+    height: 0;
+}
