@@ -29,13 +29,20 @@ html {
     margin-top: 20px;
 }
 
-#field {
+#workField {
     background: #d2e5f4;
     display: block;
     width: 80%;
     height: 100%;
     float: left;
-    overflow: scroll;
+    overflow: auto;
+}
+#field{
+    background: #dde6ed;
+    display: block;
+    width:1400px;
+    height: 900px;
+   // overflow: auto;
 }
 
 #field:after {
