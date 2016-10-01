@@ -102,6 +102,10 @@ function drawCircle(x, y, circleNumber) {
         }
         field.addEventListener('mousemove', moveAt);
         circle.addEventListener('mouseup', clearEvent);
+        circle.addEventListener('mouseup', function (event) {
+            points[circleNumber - 1].x = event.offsetX;
+            points[circleNumber - 1].y = event.offsetY;
+        })
     });
     circle.ondragstart = function () {
         return false;
@@ -129,6 +133,11 @@ function draw(event) {
         drawCircle(event.offsetX, event.offsetY, points.length);
     }
 }
+//function testingSmth() {
+//    var pointsStr = "";
+//    for (var i = 0; i < points.length; i++) pointsStr += points[i].x + ";" + points[i].y + "\n";
+//    meme.innerHTML = pointsStr;
+//}
 startDraw.addEventListener('click', initializeDrawing);
 stopDraw.addEventListener('click', drawLastLine);
 field.addEventListener('click', draw);
