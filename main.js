@@ -69,6 +69,9 @@ function drawCircle(x, y, circleNumber) {
     //        }
     //        //alert(length);
     //    });
+    circle.addEventListener('click', function (event) {
+        event.stopPropagation();
+    })
     circle.addEventListener('mousedown', function (event) {
         function moveAt(event) {
             var line1 = document.getElementById('line' + (circleNumber - 1));
@@ -79,6 +82,13 @@ function drawCircle(x, y, circleNumber) {
                 line1.setAttribute('x2', event.offsetX);
                 line1.setAttribute('y2', event.offsetY);
             }
+            else {
+                if (toDraw == false && points.length > 1) {
+                    line1 = document.getElementById('line' + points.length);
+                    line1.setAttribute('x2', event.offsetX);
+                    line1.setAttribute('y2', event.offsetY);
+                }
+            }
             if (line2 !== null) {
                 line2.setAttribute('x1', event.offsetX);
                 line2.setAttribute('y1', event.offsetY);
@@ -86,7 +96,7 @@ function drawCircle(x, y, circleNumber) {
         }
         moveAt(event);
 
-        function clearEvent() {
+        function clearEvent(event) {
             field.removeEventListener('mousemove', moveAt);
             circle.removeEventListener('mouseup', clearEvent);
         }
@@ -100,13 +110,14 @@ function drawCircle(x, y, circleNumber) {
 
 function drawLastLine() {
     if (points.length >= 3) {
-        drawLine(points[0].x, points[0].y, points[points.length - 1].x, points[points.length - 1].y);
+        drawLine(points[points.length - 1].x, points[points.length - 1].y, points[0].x, points[0].y);
     }
     toDraw = false;
     stopDraw.disabled = true;
 }
 
 function draw(event) {
+    //if (toMove) return;
     if (toDraw) {
         points.push({
             x: event.offsetX
