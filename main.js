@@ -93,6 +93,8 @@ function drawCircle(x, y, circleNumber) {
                 line2.setAttribute('x1', event.offsetX);
                 line2.setAttribute('y1', event.offsetY);
             }
+            points[circleNumber - 1].x = event.offsetX;
+            points[circleNumber - 1].y = event.offsetY;
         }
         moveAt(event);
 
@@ -102,10 +104,6 @@ function drawCircle(x, y, circleNumber) {
         }
         field.addEventListener('mousemove', moveAt);
         circle.addEventListener('mouseup', clearEvent);
-        circle.addEventListener('mouseup', function (event) {
-            points[circleNumber - 1].x = event.offsetX;
-            points[circleNumber - 1].y = event.offsetY;
-        })
     });
     circle.ondragstart = function () {
         return false;
@@ -121,7 +119,6 @@ function drawLastLine() {
 }
 
 function draw(event) {
-    //if (toMove) return;
     if (toDraw) {
         points.push({
             x: event.offsetX
