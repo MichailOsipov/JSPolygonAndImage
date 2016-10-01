@@ -7,6 +7,7 @@ var toMovePointsLines = false;
 var startDraw = document.getElementsByClassName('startDraw')[0];
 var stopDraw = document.getElementsByClassName('stopDraw')[0];
 var startMovePointsLines = document.getElementsByClassName('startMovePointsLines')[0];
+var jscolor = document.getElementsByClassName('jscolor')[0];
 var svgObj;
 stopDraw.disabled = true;
 generateSVG();
@@ -134,7 +135,9 @@ function drawPolygon() {
     var polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
     var strPoints = getPointsStr();
     polygon.setAttribute('points', strPoints);
-    polygon.setAttribute('fill', 'green');
+    //    polygon.setAttribute('fill', 'green');
+    //polygon.setAttribute('fill','#AB2567');
+    polygon.setAttribute('fill', '#' + jscolor.value);
     polygon.setAttribute('stroke-width', 0);
     drawField.insertBefore(polygon, drawField.firstChild);
 }
@@ -159,4 +162,10 @@ function draw(event) {
 startDraw.addEventListener('click', initializeDrawing);
 stopDraw.addEventListener('click', drawLastLine);
 field.addEventListener('click', draw);
+jscolor.onchange = function () {
+    if (!toDraw) {
+        drawField.removeChild(drawField.childNodes[0]);
+        drawPolygon();
+    }
+};
 //помимо points заведи массивы линий и кругов, работать с этим намного проще
