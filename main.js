@@ -95,6 +95,10 @@ function drawCircle(x, y, circleNumber) {
             }
             points[circleNumber - 1].x = event.offsetX;
             points[circleNumber - 1].y = event.offsetY;
+            if (!toDraw) {
+                drawField.removeChild(drawField.childNodes[0]);
+                drawPolygon();
+            }
         }
         moveAt(event);
 
@@ -116,6 +120,23 @@ function drawLastLine() {
     }
     toDraw = false;
     stopDraw.disabled = true;
+    drawPolygon();
+}
+
+function drawPolygon() {
+    function getPointsStr() {
+        var str = "";
+        for (var i = 0; i < points.length; i++) {
+            str += points[i].x + "," + points[i].y + " ";
+        }
+        return str;
+    }
+    var polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+    var strPoints = getPointsStr();
+    polygon.setAttribute('points', strPoints);
+    polygon.setAttribute('fill', 'green');
+    polygon.setAttribute('stroke-width', 0);
+    drawField.insertBefore(polygon, drawField.firstChild);
 }
 
 function draw(event) {
